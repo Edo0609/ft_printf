@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_test.c                                       :+:      :+:    :+:   */
+/*   hex_ptr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epenaloz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 18:34:04 by epenaloz          #+#    #+#             */
-/*   Updated: 2023/11/25 14:55:14 by epenaloz         ###   ########.fr       */
+/*   Created: 2023/11/25 14:40:16 by epenaloz          #+#    #+#             */
+/*   Updated: 2023/11/25 15:14:18 by epenaloz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <stdlib.h>
-int	main(void)
+
+//#include "ft_printf.h"
+#include <unistd.h>
+
+int pf_puthex(unsigned int n, int count, int mode)
 {
-	printf("%x", 129239058);
-	printf("\n");
-	printf("%X", 129239058);
-	printf("\n");
-}
+	char base;
+

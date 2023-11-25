@@ -6,7 +6,7 @@
 /*   By: epenaloz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:08:33 by epenaloz          #+#    #+#             */
-/*   Updated: 2023/11/18 16:31:24 by epenaloz         ###   ########.fr       */
+/*   Updated: 2023/11/25 15:06:14 by epenaloz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -26,9 +26,9 @@ int	type_check(char c, va_list args, size_t bytes)
 	else if (c == 'x' || c == 'X')
 	{
 		if (c == 'x')
-			bytes = pf_puthex(va_arg(args, unsigned int), bytes, "low");
+			bytes = pf_puthex(va_arg(args, unsigned int), bytes, 0);
 		else
-			bytes = pf_puthex(va_arg(args, unsigned int), bytes, "up");
+			bytes = pf_puthex(va_arg(args, unsigned int), bytes, 1);
 	}
 	else if (c == '%')
 		bytes = pf_putchar('%', bytes);
@@ -38,7 +38,7 @@ int	type_check(char c, va_list args, size_t bytes)
 }
 			
 
-int	ft_printf(char *str, …)
+int	ft_printf(char *str, ...)
 {
 	int		bytes;
 	va_list	args;

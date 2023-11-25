@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_test.c                                       :+:      :+:    :+:   */
+/*   lib_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epenaloz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 18:34:04 by epenaloz          #+#    #+#             */
-/*   Updated: 2023/11/25 14:55:14 by epenaloz         ###   ########.fr       */
+/*   Created: 2023/11/24 21:43:35 by epenaloz          #+#    #+#             */
+/*   Updated: 2023/11/24 21:47:27 by epenaloz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <stdlib.h>
-int	main(void)
+
+#include "stdlib.h"
+
+size_t	ft_strlen(const char *s)
 {
-	printf("%x", 129239058);
-	printf("\n");
-	printf("%X", 129239058);
-	printf("\n");
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }

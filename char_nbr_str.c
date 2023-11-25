@@ -6,7 +6,7 @@
 /*   By: epenaloz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 19:20:17 by epenaloz          #+#    #+#             */
-/*   Updated: 2023/11/18 16:31:23 by epenaloz         ###   ########.fr       */
+/*   Updated: 2023/11/25 15:12:25 by epenaloz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,26 @@ int	pf_putnbr(long n, int count)
 
 int pf_putstr(char *str, int count)
 {
-	
+	int	i;
+
+	i = 0;
+	if (!str)
+	{
+		write(1, "(null)", 6);
+		count += 6;
+		return (count);
+	}
+	else
+	{
+		while (str[i] && count != -1)
+		{
+			count = pf_putchar(str[i], count);
+			i++;
+		}
+		return (count);
+	}
+}
+
 
 
 
@@ -51,6 +70,7 @@ int pf_putstr(char *str, int count)
 int	main (int ac, char **av)
 {
 	int	i;
+	char *str = NULL;
 
 	i = 0;
 	if (ac >= 2)
@@ -73,14 +93,22 @@ int	main (int ac, char **av)
 		write(1, "\n", 1);
 		printf("contador = %d\n", i); //contador = 28
 		i = pf_putnbr(-9223372036854, i); 
-		write(1, "\n", 1);
+		write(1, "\n", 1);if (write(1, &str[i++], 1) == -1)
+                return (-1);
+            count++;
 		printf("contador = %d\n", i); //contador = 42
 		i = pf_putnbr(4294967295, i);
 		write(1, "\n", 1);
 		printf("contador = %d\n", i); //contador = 52
 		i = pf_putnbr(32, i);
 		write(1, "\n", 1);
-		printf("contador = %d\n", i); //contador 54
+		printf("contador = %d\n", i); //contador = 54
+		i = pf_putstr("holaaa", i);
+		write(1, "\n", 1);
+		printf("contador = %d\n", i); //contador = 60
+		i = pf_putstr(str, i);
+        write(1, "\n", 1);
+        printf("contador = %d\n", i); //contador = 66
 	}
 	else if (ac == 2)
 	{
