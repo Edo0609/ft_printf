@@ -6,7 +6,7 @@
 /*   By: epenaloz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 19:20:17 by epenaloz          #+#    #+#             */
-/*   Updated: 2023/11/25 19:36:47 by epenaloz         ###   ########.fr       */
+/*   Updated: 2023/11/28 19:20:20 by epenaloz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,32 +22,44 @@ int	pf_putchar(char c, int count)
 
 int	pf_putnbr(long n, int count)
 {
+	if (count == -1)
+		return (-1);
 	if (n < 0)
 	{
-		write(1, "-", 1);
-		n *= -1;
-		count++;
+		if (write(1, "-", 1) == -1)
+			return (-1);
+		else
+		{
+			n *= -1;
+			count++;
+		}
 	}
-	if (n > 9)
+	if (n > 9 && count != -1)
 	{
 		count = pf_putnbr(n / 10, count);
+		if (count == -1)
+			return (count);
 		count = pf_putchar(n % 10 + '0', count);
 	}
-	else
+	else if (count != -1)
 		count = pf_putchar(n + '0', count);
 	return (count);
 }
 
-int pf_putstr(char *str, int count)
+int	pf_putstr(char *str, int count)
 {
 	int	i;
 
 	i = 0;
 	if (!str)
 	{
-		write(1, "(null)", 6);
-		count += 6;
-		return (count);
+		if (write(1, "(null)", 6) == -1)
+			return (-1);
+		else
+		{
+			count += 6;
+			return (count);
+		}
 	}
 	else
 	{
@@ -59,9 +71,6 @@ int pf_putstr(char *str, int count)
 		return (count);
 	}
 }
-
-
-
 
 /*#include "stdio.h"
 #include "stdlib.h"

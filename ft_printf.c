@@ -6,7 +6,7 @@
 /*   By: epenaloz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:08:33 by epenaloz          #+#    #+#             */
-/*   Updated: 2023/11/25 19:32:34 by epenaloz         ###   ########.fr       */
+/*   Updated: 2023/11/28 19:22:05 by epenaloz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -14,11 +14,11 @@
 int	type_check(char c, va_list args, size_t bytes)
 {
 	if (c == 'c')
-		bytes = pf_putchar(va_arg(args, char), bytes);
+		bytes = pf_putchar(va_arg(args, int), bytes);
 	else if (c == 's')
 		bytes = pf_putstr(va_arg(args, char *), bytes);
 	else if (c == 'p')
-		bytes = pf_puthex(va_arg(args, void *), bytes, 2);
+		bytes = pf_putptr(va_arg(args, unsigned long), bytes);
 	else if (c == 'd' || c == 'i')
 		bytes = pf_putnbr(va_arg(args, int), bytes);
 	else if (c == 'u')
@@ -34,9 +34,8 @@ int	type_check(char c, va_list args, size_t bytes)
 		bytes = pf_putchar('%', bytes);
 	return (bytes);
 }
-			
 
-int	ft_printf(char *str, ...)
+int	ft_printf(char const *str, ...)
 {
 	int		bytes;
 	va_list	args;
@@ -45,7 +44,7 @@ int	ft_printf(char *str, ...)
 	if (!str)
 		return (-1);
 	va_start(args, str);
-	while (str)
+	while (*str != '\0')
 	{
 		if (bytes == -1)
 			return (va_end(args), bytes);
@@ -58,5 +57,5 @@ int	ft_printf(char *str, ...)
 			bytes = pf_putchar(*str, bytes);
 		str++;
 	}
-	return (va_end(va), bytes);
+	return (va_end(args), bytes);
 }
