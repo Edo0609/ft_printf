@@ -6,15 +6,14 @@
 /*   By: epenaloz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:34:04 by epenaloz          #+#    #+#             */
-/*   Updated: 2023/11/25 14:55:14 by epenaloz         ###   ########.fr       */
+/*   Updated: 2023/11/25 20:01:22 by epenaloz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
 #include <stdlib.h>
+#include "ft_printf.h"
+
 int	main(void)
 {
-	printf("%x", 129239058);
-	printf("\n");
-	printf("%X", 129239058);
-	printf("\n");
+	int
 }
